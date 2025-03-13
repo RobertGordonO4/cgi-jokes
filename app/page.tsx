@@ -1,10 +1,13 @@
+import { Stack } from "@mui/material";
 import type { Metadata } from "next";
-import { Counter } from "./components/counter/Counter";
 
 export default function IndexPage() {
-  return <Counter />;
+  return <Stack />;
 }
 
 export const metadata: Metadata = {
-  title: "Redux Toolkit",
+  title: "Chuck's jokes for CGI",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
