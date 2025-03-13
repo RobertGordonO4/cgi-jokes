@@ -1,13 +1,13 @@
-import Image from "next/image";
-import type { ReactNode } from "react";
-import { StoreProvider } from "./StoreProvider";
+import Image from "next/image"
+import type { ReactNode } from "react"
+import { StoreProvider } from "./StoreProvider"
 
-import "./styles/globals.css";
-import styles from "./styles/layout.module.css";
-import { Typography } from "@mui/material";
+import "./styles/globals.css"
+import styles from "./styles/layout.module.css"
+import { Typography } from "@mui/material"
 
 interface Props {
-  readonly children: ReactNode;
+  readonly children: ReactNode
 }
 
 export default function RootLayout({ children }: Props) {
@@ -23,7 +23,9 @@ export default function RootLayout({ children }: Props) {
               height={201}
               className="mt-2"
             />
-            <Typography variant="h2">Chuck's jokes for CGI! Hahaa</Typography>
+            <Typography variant="h2" className="text-chuck-blue">
+              Chuck's jokes for CGI! Hahaa
+            </Typography>
           </header>
           <section className={styles.container}>
             <main className={styles.main}>{children}</main>
@@ -31,5 +33,5 @@ export default function RootLayout({ children }: Props) {
         </body>
       </html>
     </StoreProvider>
-  );
+  )
 }

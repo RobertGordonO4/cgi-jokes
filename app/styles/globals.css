@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+  --color-chuck-orange: #f15b23;
+  --color-chuck-blue: #76c7ff;
+  --color-chuck-brown: #8b5a2b;
+  --color-chuck-black: #222;
+}
+
 html,
 body {
   min-height: 100vh;

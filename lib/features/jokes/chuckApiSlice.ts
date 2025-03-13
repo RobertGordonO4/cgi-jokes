@@ -1,11 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 // Define a response type (modify based on API response structure)
 interface Joke {
-  icon_url: string;
-  id: string;
-  url: string;
-  value: string;
+  icon_url: string
+  id: string
+  url: string
+  value: string
 }
 
 // Define the API slice
@@ -26,7 +26,7 @@ export const chuckApiSlice = createApi({
       query: (query) => `/search?query=${query}`,
     }),
   }),
-});
+})
 
 // Export auto-generated hooks
 export const {
@@ -34,4 +34,4 @@ export const {
   useGetCategoriesQuery,
   useGetJokeByCategoryQuery,
   useSearchJokesQuery,
-} = chuckApiSlice;
+} = chuckApiSlice
