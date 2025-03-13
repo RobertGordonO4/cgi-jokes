@@ -4,7 +4,7 @@ import { chuckApiSlice } from "./features/jokes/chuckApiSlice";
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
-const rootReducer = combineSlices(chuckApiSlice, /* Put new API slices here */);
+const rootReducer = combineSlices(chuckApiSlice /* Put new API slices here */);
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>;
 
