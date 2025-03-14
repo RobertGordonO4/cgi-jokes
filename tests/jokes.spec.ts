@@ -22,7 +22,9 @@ test.describe("Chuck Norris Jokes Page", () => {
     await page.locator("text=Search by category").click()
 
     await page.waitForTimeout(500)
-    const statusMessage = await page.locator('[data-testid="status-message"]').textContent()
+    const statusMessage = await page
+      .locator('[data-testid="status-message"]')
+      .textContent()
     expect(statusMessage).toContain("Joke from category: animal")
   })
 
@@ -32,9 +34,13 @@ test.describe("Chuck Norris Jokes Page", () => {
     await page.locator("text=Search by phrase").click()
     await page.waitForTimeout(500)
 
-    const statusMessageExists = await page.locator('[data-testid="status-message"]').count()
+    const statusMessageExists = await page
+      .locator('[data-testid="status-message"]')
+      .count()
     if (statusMessageExists) {
-      const statusMessage = await page.locator('[data-testid="status-message"]').textContent()
+      const statusMessage = await page
+        .locator('[data-testid="status-message"]')
+        .textContent()
       expect(statusMessage).not.toContain("No jokes found for this phrase")
     } else {
       const jokeText = await page.locator("h6").textContent()
@@ -47,7 +53,9 @@ test.describe("Chuck Norris Jokes Page", () => {
     await page.locator("text=Search by phrase").click()
 
     await page.waitForTimeout(500)
-    const statusMessage = await page.locator('[data-testid="status-message"]').textContent()
+    const statusMessage = await page
+      .locator('[data-testid="status-message"]')
+      .textContent()
     expect(statusMessage).toContain("No jokes found for this phrase")
   })
 })

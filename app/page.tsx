@@ -10,7 +10,7 @@ import {
   setCategory,
   setJoke,
   setPhrase,
-  setStatusMessage
+  setStatusMessage,
 } from "@/data/api/jokes/chuckSlice"
 import { RootState } from "@/data/store"
 import { Button, Stack, TextField, Typography, MenuItem } from "@mui/material"
@@ -45,7 +45,9 @@ export default function IndexPage() {
       dispatch(setJoke(jokeCategoryData.value))
       dispatch(setStatusMessage(`Joke from category: ${category}`))
     } else {
-      dispatch(setStatusMessage(`No jokes found for this category: ${category}`))
+      dispatch(
+        setStatusMessage(`No jokes found for this category: ${category}`),
+      )
     }
   }
 
@@ -77,7 +79,11 @@ export default function IndexPage() {
         {jokeLoading ? "Loading joke..." : joke}
       </Typography>
       {statusMessage && (
-        <Typography variant="body2" className="text-chuck-brown" data-testid="status-message">
+        <Typography
+          variant="body2"
+          className="text-chuck-brown"
+          data-testid="status-message"
+        >
           {statusMessage}
         </Typography>
       )}

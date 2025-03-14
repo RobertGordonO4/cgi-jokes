@@ -33,5 +33,6 @@ const chuckSlice = createSlice({
   },
 })
 
-export const { setJoke, setCategory, setPhrase, setStatusMessage } = chuckSlice.actions
+export const { setJoke, setCategory, setPhrase, setStatusMessage } =
+  chuckSlice.actions
 export default chuckSlice.reducer

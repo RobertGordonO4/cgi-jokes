@@ -7,7 +7,8 @@
     "prettier:write": "prettier . --write ",
     "prettier:check": "prettier . --check",
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
