@@ -5,14 +5,14 @@ import {
   useGetJokeByCategoryQuery,
   useGetRandomJokeQuery,
   useSearchJokesQuery,
-} from "@/lib/features/jokes/chuckApiSlice"
+} from "@/data/api/jokes/chuckApiSlice"
 import {
   setCategory,
   setJoke,
   setPhrase,
   setStatusMessage
-} from "@/lib/features/jokes/chuckSlice"
-import { RootState } from "@/lib/store"
+} from "@/data/api/jokes/chuckSlice"
+import { RootState } from "@/data/store"
 import { Button, Stack, TextField, Typography, MenuItem } from "@mui/material"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -77,7 +77,7 @@ export default function IndexPage() {
         {jokeLoading ? "Loading joke..." : joke}
       </Typography>
       {statusMessage && (
-        <Typography variant="body2" className="text-chuck-brown">
+        <Typography variant="body2" className="text-chuck-brown" data-testid="status-message">
           {statusMessage}
         </Typography>
       )}

@@ -1,7 +1,7 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import { chuckApiSlice } from "./features/jokes/chuckApiSlice"
-import chuckReducer from "./features/jokes/chuckSlice"
+import { chuckApiSlice } from "./api/jokes/chuckApiSlice"
+import chuckReducer from "./api/jokes/chuckSlice"
 
 const rootReducer = combineReducers({
   [chuckApiSlice.reducerPath]: chuckApiSlice.reducer,
