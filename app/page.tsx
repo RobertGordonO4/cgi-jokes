@@ -10,6 +10,7 @@ import {
   setCategory,
   setJoke,
   setPhrase,
+  setStatusMessage
 } from "@/lib/features/jokes/chuckSlice"
 import { RootState } from "@/lib/store"
 import { Button, Stack, TextField, Typography, MenuItem } from "@mui/material"
@@ -18,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 export default function IndexPage() {
   const dispatch = useDispatch()
-  const { category, joke, phrase } = useSelector(
+  const { category, joke, phrase, statusMessage } = useSelector(
     (state: RootState) => state.chuck,
   )
 
@@ -42,8 +43,9 @@ export default function IndexPage() {
   const handleSearchCategory = () => {
     if (jokeCategoryData) {
       dispatch(setJoke(jokeCategoryData.value))
+      dispatch(setStatusMessage(`Joke from category: ${category}`))
     } else {
-      dispatch(setJoke("No jokes found for this category."))
+      dispatch(setStatusMessage(`No jokes found for this category: ${category}`))
     }
   }
 
@@ -51,7 +53,7 @@ export default function IndexPage() {
     if (jokePhraseData?.result.length) {
       dispatch(setJoke(jokePhraseData.result[0].value))
     } else {
-      dispatch(setJoke("No jokes found for this phrase."))
+      dispatch(setStatusMessage(`No jokes found for this phrase: ${phrase}`))
     }
   }
 
@@ -74,8 +76,13 @@ export default function IndexPage() {
       >
         {jokeLoading ? "Loading joke..." : joke}
       </Typography>
-      <Stack className="!mt-8 w-full" spacing={2}>
+      {statusMessage && (
         <Typography variant="body2" className="text-chuck-brown">
+          {statusMessage}
+        </Typography>
+      )}
+      <Stack className="!mt-8 w-full" spacing={2}>
+        <Typography variant="body2" className="text-chuck-black">
           Want more jokes? Try searching by phrase or category.
         </Typography>
         {/* Search by phrase */}
@@ -90,7 +97,7 @@ export default function IndexPage() {
           />
           <Button
             variant="outlined"
-            className="w-[30%]"
+            className="w-[35%]"
             onClick={handleSearchPhrase}
           >
             Search by phrase
@@ -115,7 +122,7 @@ export default function IndexPage() {
           </TextField>
           <Button
             variant="outlined"
-            className="w-[30%]"
+            className="w-[35%]"
             onClick={handleSearchCategory}
           >
             Search by category
