@@ -10,19 +10,28 @@ API Calls used:
 
 ## Technologies used
 
+
 React, Typescript, Yarn, Next.js (with Webpack)
+
 MUI, Tailwind, Redux, Prettier, Playwright
+
 
 Appropriate scripts for Prettier & Playwright can be found in the package.json
 
 ## Testing - Playwright
 
+
 yarn test -> yarn playwright test - Headless mode
+
 yarn test:ui -> yarn playwright test --ui - Playwright UI runner
+
 yarn test:debug -> yarn playwright test --debug - Line-by-line debugging
 
 ## Dev/Build/Start
 
+
 yarn dev
+
 yarn build
+
 yarn start
