@@ -14,7 +14,7 @@ import {
 } from "@/data/api/jokes/chuckSlice"
 import { RootState } from "@/data/store"
 import { Button, Stack, TextField, Typography, MenuItem } from "@mui/material"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 export default function IndexPage() {
@@ -22,17 +22,19 @@ export default function IndexPage() {
   const { category, joke, phrase, statusMessage } = useSelector(
     (state: RootState) => state.chuck,
   )
+  const [inputPhrase, setInputPhrase] = useState('')
+  const [inputCategory, setInputCategory] = useState('')
 
   const { data: jokeRandomData, isLoading: jokeLoading } =
     useGetRandomJokeQuery()
   const { data: categories = [] } = useGetCategoriesQuery()
-
   const { data: jokeCategoryData } = useGetJokeByCategoryQuery(category, {
     skip: !category,
   })
   const { data: jokePhraseData } = useSearchJokesQuery(phrase, {
-    skip: !phrase,
+    skip: !phrase || phrase.length < 3,
   })
+
 
   useEffect(() => {
     if (jokeRandomData) {
@@ -44,6 +46,7 @@ export default function IndexPage() {
     if (jokeCategoryData) {
       dispatch(setJoke(jokeCategoryData.value))
       dispatch(setStatusMessage(`Joke from category: ${category}`))
+      dispatch(setCategory(inputCategory))
     } else {
       dispatch(
         setStatusMessage(`No jokes found for this category: ${category}`),
@@ -54,17 +57,10 @@ export default function IndexPage() {
   const handleSearchPhrase = () => {
     if (jokePhraseData?.result.length) {
       dispatch(setJoke(jokePhraseData.result[0].value))
+      dispatch(setPhrase(inputPhrase))
     } else {
       dispatch(setStatusMessage(`No jokes found for this phrase: ${phrase}`))
     }
-  }
-
-  const handleChangeCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setCategory(event.target.value))
-  }
-
-  const handleChangePhrase = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setPhrase(event.target.value))
   }
 
   return (
@@ -98,13 +94,14 @@ export default function IndexPage() {
             variant="outlined"
             className="w-full"
             size="small"
-            value={phrase}
-            onChange={handleChangePhrase}
+            value={inputPhrase}
+            onChange={(e) => setInputPhrase(e.target.value)}
           />
           <Button
             variant="outlined"
             className="w-[35%]"
             onClick={handleSearchPhrase}
+            disabled={!phrase || phrase.length < 3}
           >
             Search by phrase
           </Button>
@@ -117,8 +114,8 @@ export default function IndexPage() {
             variant="outlined"
             className="w-full"
             size="small"
-            value={category}
-            onChange={handleChangeCategory}
+            value={inputCategory}
+            onChange={(e) => setInputCategory(e.target.value)}
           >
             {categories.map((cat) => (
               <MenuItem key={cat} value={cat}>
